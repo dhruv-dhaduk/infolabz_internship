@@ -1,0 +1,5 @@
+Task 3 : 
+
+Allow user to insert Mutual fund scheme code. If found print scheme name otherwise print scheme not found. 
+
+API: https://api.mfapi.in/mf

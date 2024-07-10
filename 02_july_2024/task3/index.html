@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            input[type="number"] {
+                background-color: black;
+                color: white;
+            }
+
+            #result {
+                font-size: 1.1rem;
+                font-weight: bold;
+                font-family: sans-serif;
+            }
+        </style>
+
+        <script>
+            let data;
+
+            async function fetchMutualFundData() {
+                const URL = 'https://api.mfapi.in/mf';
+                const response = await fetch(URL);
+                data = await response.json();
+            }
+
+            fetchMutualFundData();
+        </script>
+    </head>
+    <body>
+        <form>
+            <label for="code">Mutual Fund Scheme Code : </label>
+            <input type="number" name="code" required>
+            <input type="submit" value="Submit">
+        </form>
+
+        <p id="result">
+
+        </p>
+
+        <script>
+            const form = document.querySelector("form");
+            const result = document.querySelector("#result");
+
+            function handleSubmit(e) {
+                e.preventDefault();
+
+                if (data === undefined) {
+                    alert("API has not loaded yet. Please wait and try again.");
+                    return;
+                }
+
+                const code = Number(form.code.value); 
+
+                result.innerHTML = 'Loading . . .';
+                setTimeout(() => {
+                    const scheme = data.find((item) => item.schemeCode === code);
+                    result.innerHTML = scheme?.schemeName || 'Scheme not found';
+                }, 0);
+                
+            }
+
+            form.addEventListener("submit", handleSubmit);
+        </script>
+    </body>
+</html>
