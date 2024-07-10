@@ -1,0 +1,5 @@
+TASK 2 : 
+
+https://data.covid19india.org/data.json
+
+Allow user to insert date in form field. On click of submit print New cases / New deaths in table format as shown in below image .

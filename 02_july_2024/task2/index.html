@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            input[type="date"] {
+                background-color: black;
+                color: white;
+            }
+
+            table {
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+
+            th, td {
+                border: 1px solid white;
+                padding: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <label for="date">Date : </label>
+            <input type="date" name="date" id="date">
+            <input type="submit" value="Submit">
+        </form> 
+
+        <table>
+
+        </table>
+
+        <script>
+            const form = document.querySelector("form");
+            const table = document.querySelector("table");
+
+            async function updateTable(date) {
+
+                table.innerHTML = '';
+
+                const URL = 'https://data.covid19india.org/data.json';
+                const response = await fetch(URL);
+                const data = await response.json();
+
+                for (const item of data.cases_time_series) {
+                    if (item.dateymd === date) {
+                        table.innerHTML += `
+                            <tr>
+                                <td> NEW CASES </td>
+                                <td> ${item.dailyconfirmed} </td>
+                            </tr>
+                            <tr>
+                                <td> NEW DEATHS </td>
+                                <td> ${item.dailydeceased} </td>
+                            </tr>
+                        `;
+                        return;
+                    }
+                }
+
+                table.innerHTML += 'NOT FOUND';
+            }
+
+            function handleSubmit(e) {
+                e.preventDefault();
+                const date = document.querySelector("#date").value;
+
+                updateTable(date);
+            }
+
+            form.addEventListener("submit", handleSubmit);
+            
+        </script>
+    </body>
+</html>
