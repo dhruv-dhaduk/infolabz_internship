@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            table {
+                border-collapse: collapse;
+                margin: 0 auto;
+            }
+
+            th, td {
+                padding: 1rem;
+                border: 1px solid white;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="table">
+            <tr>
+                <th>SR NO</th>
+                <th>STATE NAME</th>
+                <th>CONFIRMED CASES</th>
+                <th>RECOVERED CASES</th>
+                <th>DEATH CASES</th>
+            </tr>
+        </table>
+
+        <script>
+            const table = document.querySelector('#table');
+
+            async function loadData() {
+                table.innerHTML = `
+                    <tr>
+                        <th>SR NO</th>
+                        <th>STATE NAME</th>
+                        <th>CONFIRMED CASES</th>
+                        <th>RECOVERED CASES</th>
+                        <th>DEATH CASES</th>
+                    </tr>
+                `;
+
+                const URL = 'https://data.covid19india.org/data.json';
+                const response = await fetch(URL);
+                const data = await response.json();
+
+                data.statewise.forEach((item, i) => {
+                    table.innerHTML += `
+                        <tr>
+                            <td> ${i + 1} </td>
+                            <td> ${item.state} </td>
+                            <td> ${item.confirmed} </td>
+                            <td> ${item.recovered} </td>
+                            <td> ${item.deaths} </td> 
+                        </tr>
+                    `;
+                })
+            }
+
+            loadData();
+
+        </script>
+    </body>
+</html>
