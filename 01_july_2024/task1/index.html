@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            input[type="number"] {
+                background-color: black;
+                color: white;
+                border: 1px solid white;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <p>Number : <input type="number" name="number" id="number"></p>
+            <input type="submit" value="Submit">
+        </form>
+
+        <script>
+            const alertEvenOddNumber = (num) => {
+                if (num % 2 === 0) {
+                    alert(`${num} is even number`);
+                } else {
+                    alert(`${num} is odd number`);
+                }
+            }
+
+            const form = document.querySelector('form');
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+
+                alertEvenOddNumber(e.target.number.value);
+            });
+
+        </script>
+    </body>
+</html>
