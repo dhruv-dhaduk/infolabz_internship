@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+            
+            table {
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid white;
+                padding: 1rem;
+            }
+
+            input[type="text"], input[type="email"], textarea, select {
+                border: 1px solid white;
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Simple Form</h1>
+        <form id="form">
+
+            <p>
+                <label for="name">Name :</label>
+                <br>
+                <input type="text" name="name">
+            </p>
+
+            <p>
+                <label for="email" >Email :</label> 
+                <br>
+                <input type="email" name="email">
+            </p>
+
+            <p>
+                <label for="gender">Gender :</label>
+                <br>
+                <input type="radio" name="gender" value="male">Male</input>
+                <br>
+                <input type="radio" name="gender" value="female">Female</input>
+            </p>
+
+            <p>
+                <label for="city">City :</label>
+                <br>
+                <select name="city">
+                    <option>Ahmedabad</option>
+                    <option>Mumbai</option>
+                    <option>Pune</option>
+                    <option>Bangalore</option>
+                    <option>Delhi</option>
+                    <option>Noida</option>
+                    <option>Jaipur</option>
+                    <option>Hyderabad</option>
+                    <option>Surat</option>
+                    <option>Vadodara</option>
+                    <option>Indore</option>
+                    <option>Bhopal</option>
+                    <option>Jabalpur</option>
+                    <option>Guwahati</option>
+                    <option>Kolkata</option>
+                    <option>Chennai</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="address">Address :</label>
+                <br>
+                <textarea name="address" rows="4" cols="25"></textarea>
+            </p>
+            
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+        </form>
+
+
+        <h1>Submitted Data</h1>
+
+        <table id="table">
+            
+        </table>
+
+        <script>
+            const form = document.querySelector('#form');
+            const table = document.querySelector('#table');
+
+            function updateTable(name, email, gender, city, address) {
+                table.innerHTML = `
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>City</th>
+                        <th>Address</th>
+                    </tr>
+                `;
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${name}</td>
+                        <td>${email}</td>
+                        <td>${gender}</td>
+                        <td>${city}</td>
+                        <td>${address}</td>
+                    </tr>
+                `;
+            }
+
+            function handleSubmit(e) {
+                e.preventDefault();
+
+                console.log(e.target.name.value);
+                console.log(e.target.email.value);
+                console.log(e.target.gender.value);
+                console.log(e.target.city.value);
+                console.log(e.target.address.value);
+
+                updateTable(
+                    e.target.name.value,
+                    e.target.email.value,
+                    e.target.gender.value,
+                    e.target.city.value,
+                    e.target.address.value
+                );
+            }
+
+            form.addEventListener('submit', handleSubmit);
+        </script>
+    </body>
+</html>

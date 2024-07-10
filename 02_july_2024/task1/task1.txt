@@ -1,0 +1,4 @@
+TASK 1 : 
+
+Create a simple html form ( registration form ) with name, email, phone ,gender ( radio ) , city ( drop-down) and address (textarea). On submit button print all data in table format. 
+[form data to table]
