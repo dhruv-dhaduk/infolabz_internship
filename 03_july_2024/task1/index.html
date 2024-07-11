@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+
+            table {
+                border-collapse: collapse;
+                margin: 0 auto;
+            }
+
+            td, th {
+                border: 1px solid white;
+                padding: 1rem;
+            }
+
+        </style>
+    </head>
+    <body>
+        <table>
+            
+        </table>
+
+        <script>
+            const table = document.querySelector('table');
+
+            async function loadData() {
+                const URL = 'http://universities.hipolabs.com/search?country=india';
+                const response = await fetch(URL);
+                const data = await response.json();
+
+                table.innerHTML = `
+                    <tr>
+                        <th>SR NO</th>
+                        <th>UNIVERSITY NAME</th>
+                        <th>STATE-PROVINCE</th>
+                        <th>WEBSITE LINK</th>
+                    </tr>
+                `;
+                
+                data.forEach((item, i) => {
+                    table.innerHTML += `
+                        <tr>
+                            <td>${i + 1}</td>
+                            <td>${item.name}</td>
+                            <td>${item['state-province']}</td>
+                            <td><a href="${item.web_pages[0]}" target="_blank">Visit Site</a></td> 
+                        </tr>
+                    `;
+                })
+            }
+
+            loadData();
+        </script>
+    </body>
+</html>

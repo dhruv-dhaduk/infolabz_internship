@@ -1,0 +1,12 @@
+TASK 1 : 
+
+API ACCESS ( PRINT DATA )
+
+API : http://universities.hipolabs.com/search?country=india
+
+Print universities from above API in below table format. ( You can added css/bootstrap as per your requirement ) 
+
+SR NO | UNIVERSITY NAME | STATE-PROVINCE  | WEBSITE LINK 
+1          Ashoka University           Haryana                         Visit Site
+
+( on click of visit site, website should be open in new tab ) 
