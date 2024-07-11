@@ -1,0 +1,16 @@
+TASK 1 : 
+
+Dynamic API 
+
+API : http://universities.hipolabs.com/search?country={country_name}
+
+FOR EXAMPLE : http://universities.hipolabs.com/search?country=india
+
+
+Create a simple text form (html) which accepts country name from user. Pass country name in above API and print all universities in below format. 
+
+
+SR NO | UNIVERSITY NAME | STATE-PROVINCE  | WEBSITE LINK 
+1          Ashoka University           Haryana                         Visit Site
+
+( on click of visit site, website should be open in new tab ) 
