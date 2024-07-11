@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            body {
+                background-color: black;
+                color: white;
+            }
+        </style>
+
+        <script>
+            let data;
+
+            async function fetchData() {
+                const URL = 'https://isro.vercel.app/api/spacecrafts';
+
+                try {
+                    const response = await fetch(URL);
+                    data = (await response.json()).spacecrafts;
+                } catch (err) {
+                    alert(err.message);
+                    window.location.reload();
+                }
+            }
+
+            fetchData();
+        </script>
+
+    </head>
+    <body>
+        <form>
+            <label for="spacecraft">spacecraft Name :</label>
+            <input type="text" name="spacecraft" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <p id="result">
+
+        </p>
+
+        <script>
+            const form = document.querySelector('form');
+            const resultP = document.querySelector('#result');
+
+            function handleSubmit(e) {
+                e.preventDefault();
+
+                if (!data?.length) {
+                    alert('API has not loaded yet. Please try again later.');
+                    return;
+                }
+
+                const spacecraft = e.target.spacecraft.value;
+
+                const result = data.find(item => item.name.toLowerCase() === spacecraft.toLowerCase());
+
+                if (result) {
+                    resultP.innerHTML = `Spacecraft ${result.name} found with ID ${result.id}`;
+                } else {
+                    resultP.innerHTML = `Spacecraft ${spacecraft} NOT found`;
+                }
+            }
+
+            form.addEventListener('submit', handleSubmit);
+            
+        </script>
+    </body>
+</html>

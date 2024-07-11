@@ -1,0 +1,7 @@
+TASK 2 : 
+
+API SEARCH OPERATION 
+
+API : https://isro.vercel.app/api/spacecrafts
+
+Allow user to insert name of spacecraft in textbox. Print Spacecraft found or not. 
